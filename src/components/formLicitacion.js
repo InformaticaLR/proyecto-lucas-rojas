@@ -399,13 +399,13 @@ function Form({ action, title, licitacion, disabled = false, onClick, usuario })
                                 {licitacion?.responsable && (
                                     <option value={licitacion?.responsable}>{licitacion?.responsable}</option>
                                 )}
+                                <option value="SILVIA ALCAIDE">Silvia Alcaide</option>
                                 <option value="JOSÉ M QUERO">José M Quero</option>
                                 <option value="JUAN G. MARTÍNEZ">Juan G. Martínez</option>
                                 <option value="MARÍA JOSÉ FERNÁNDEZ">María José Fernández</option>
                                 <option value="MIGUEL JURADO">Miguel Jurado</option>
                                 <option value="ELENA ALCAIDE">Elena Alcaide</option>
                                 <option value="SARA REYES">Sara Reyes</option>
-                                <option value="SILVIA ALCAIDE">Silvia Alcaide</option>
                             </select>
                             
                             <label htmlFor='importeanual' className='mb-2 text-3xl mr-20'>Importe Anual (sin símbolo de €)</label>
