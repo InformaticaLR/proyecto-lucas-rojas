@@ -25,7 +25,7 @@ model User {
 
 model Licitacion {
   item                  Int @id @default(autoincrement())
-  fechapresentacion     DateTime? @db.Date
+  fechapresentacion     DateTime? @db.Timestamp
   cliente               String?
   titulo                String?
   numexpediente         String? @unique
@@ -58,8 +58,8 @@ model Evento {
   id                    Int   @id @default(autoincrement())
   creador               String
   title                 String
-  start                 DateTime @db.Date
-  end                   DateTime @db.Date
+  start                 DateTime @db.Timestamp
+  end                   DateTime @db.Timestamp
   categoria             String  
   idLicitacion          Int? @unique
   licitacion            Licitacion? @relation(fields: [idLicitacion], references: [item])
