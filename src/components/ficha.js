@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 
 function formatForInput(dateString) {
     const date = new Date(dateString);
+    date.setHours(date.getHours() - 2);
     let month = '' + (date.getMonth() + 1);
     let day = '' + date.getDate();
     let hours = '' + date.getHours();
-    let minutes = '' + date.getMinutes();
-
+    let minutes = '' + date.getMinutes();   
+    
     if (month.length < 2)
         month = '0' + month;
     if (day.length < 2)
