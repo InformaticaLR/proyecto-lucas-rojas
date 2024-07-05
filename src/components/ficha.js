@@ -1,18 +1,33 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 
 function formatForInput(dateString) {
     const date = new Date(dateString);
-    date.setHours(date.getHours() - 2); // Restar 2 horas
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    date.setHours(date.getHours() - 2); //restar 2horas
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate();
+    let hours = '' + date.getHours();
+    let minutes = '' + date.getMinutes();   
     
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+    if (hours.length < 2)
+        hours = '0' + hours;
+    if (minutes.length < 2)
+        minutes = '0' + minutes;
+
+    return `${date.getFullYear()}-${month}-${day}T${hours}:${minutes}`;
 }
 
-const Form = ({ action, licitacion, disabled = false, usuario }) => {
+function Form({ action, licitacion, disabled = false, usuario }) {
+
+    const [estadoFinal, setEstadoFinal] = useState(licitacion?.estadofinal || '');
+
+    const handleEstadoFinalChange = (event) => {
+        setEstadoFinal(event.target.value);
+    };
 
     return (
         <form action={action}>
@@ -76,38 +91,42 @@ const Form = ({ action, licitacion, disabled = false, usuario }) => {
                             defaultValue={licitacion?.observaciones}
                             className="border p-2 rounded text-center text-xl my-1" />
 
-                        <div className='grid grid-cols-3 gap-y-4 w-[80vw]'>
-                            <div className="flex flex-col items-center justify-center">
-                                <label htmlFor='fianza' className='mb-2 text-3xl'>Fianza</label>
-                                <input type='number' id='fianza' name='fianza' min='0' step={0.01}
-                                    value={Number(licitacion?.fianza)}
-                                    className="border p-2 rounded text-center text-xl my-1" />
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <label htmlFor='garantia' className='mb-2 text-3xl'>Garantía</label>
-                                <input type='text' id='garantia' name='garantia'
-                                    value={licitacion?.garantia}
-                                    className="border p-2 rounded text-center text-xl my-1" />
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <label htmlFor='importeanual' className='mb-2 text-3xl'>Importe Anual</label>
-                                <input type='number' id='importeanual' name='importeanual' min='0' step={0.01}
-                                    value={Number(licitacion?.importeanual)}
-                                    className="border p-2 rounded text-center text-xl my-1" />
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <label htmlFor='fechaformalizacion' className='mb-2 text-3xl'>Fecha de inicio</label>
-                                <input type="datetime-local" id="fechaformalizacion" name="fechaformalizacion"
-                                    defaultValue={licitacion?.fechaformalizacion ? formatForInput(licitacion.fechaformalizacion) : ''} 
-                                    className="border p-2 rounded text-center text-xl my-1" />
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <label htmlFor='fechafincontrato' className='mb-2 text-3xl'>Fecha de finalización</label>
-                                <input type="datetime-local" id="fechafincontrato" name="fechafincontrato"
-                                    defaultValue={licitacion?.fechafincontrato ? formatForInput(licitacion.fechafincontrato) : ''} 
-                                    className="border p-2 rounded text-center text-xl my-1" />
-                            </div>
-                        </div>
+<div className='grid grid-cols-3 gap-y-4 w-[80vw]'>
+<div className="flex flex-col items-center justify-center">
+        <label htmlFor='fianza' className='mb-2 text-3xl'>Fianza</label>
+        <input type='number' id='fianza' name='fianza' min='0' step={0.01}
+            value={Number(licitacion?.fianza)}
+            className="border p-2 rounded text-center text-xl my-1" />
+    </div>
+    <div className="flex flex-col items-center justify-center">
+        <label htmlFor='garantia' className='mb-2 text-3xl'>Garantía</label>
+        <input type='text' id='garantia' name='garantia'
+            value={licitacion?.garantia}
+            className="border p-2 rounded text-center text-xl my-1" />
+    </div>
+    <div className="flex flex-col items-center justify-center">
+        <label htmlFor='importeanual' className='mb-2 text-3xl'>Importe Anual</label>
+        <input type='number' id='importeanual' name='importeanual' min='0' step={0.01}
+            value={Number(licitacion?.importeanual)}
+            className="border p-2 rounded text-center text-xl my-1" />
+    </div>
+    <div className="flex flex-col items-center justify-center">
+        <label htmlFor='fechaformalizacion' className='mb-2 text-3xl'>Fecha de inicio</label>
+        <input type="datetime-local" id="fechaformalizacion" name="fechaformalizacion"
+            defaultValue={licitacion?.fechaformalizacion ? formatForInput(licitacion.fechaformalizacion) : ''} 
+            className="border p-2 rounded text-center text-xl my-1" />
+    </div>
+    <div className="flex flex-col items-center justify-center">
+        <label htmlFor='fechafincontrato' className='mb-2 text-3xl'>Fecha de finalización</label>
+        <input type="datetime-local" id="fechafincontrato" name="fechafincontrato"
+            defaultValue={licitacion?.fechafincontrato ? formatForInput(licitacion.fechafincontrato) : ''} 
+            className="border p-2 rounded text-center text-xl my-1" />
+    </div>
+</div>
+
+
+
+
                     </div>
                 </div>
             </fieldset>
@@ -115,4 +134,4 @@ const Form = ({ action, licitacion, disabled = false, usuario }) => {
     );
 }
 
-export default Form;
+export default Form
