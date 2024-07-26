@@ -91,7 +91,7 @@ function Form({ action, title, licitacion, disabled = false, onClick, usuario })
                         <input type='text' id='cliente' name='cliente'
                             defaultValue={licitacion?.cliente} className="border p-2 rounded text-center text-xl my-1" required/>
 
-                        <label htmlFor='titulo' className='mb-2 text-3xl mr-20'>Título</label>
+                        <label htmlFor='titulo' className='mb-2 text-3xl mr-20'>Título.</label>
                         <input type='text' id='titulo' name='titulo'
                             defaultValue={licitacion?.titulo} className="border p-2 rounded text-center text-xl my-1" required />
 
