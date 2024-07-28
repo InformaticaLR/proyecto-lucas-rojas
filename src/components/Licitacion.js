@@ -1,12 +1,4 @@
 "use client"
-
-function createRutaCarpeta(ruta) {
-    if (!ruta.startsWith('localexplorer:')) {
-        ruta = 'localexplorer:' + ruta.replace('file:///', '');
-    }
-    return ruta;
-}
-
 function Licitacion({ children, licitacion }) {
 
     function estadoInicialLicitacion({ licitacion }) {
@@ -91,7 +83,7 @@ function Licitacion({ children, licitacion }) {
     const horafinalizacion = (licitacion?.fechafincontrato?.getHours() < 10 ? '0' : '') + licitacion?.fechafincontrato?.getHours()
     const minutofinalizacion = (licitacion?.fechafincontrato?.getMinutes() < 10 ? '0' : '') + licitacion?.fechafincontrato?.getMinutes()
 
-    const rutacarpeta = createRutaCarpeta(licitacion.rutacarpeta);
+    const rutacarpeta = "localexplorer:" + licitacion.rutacarpeta
 
     return (
         <div className="grid grid-cols-1 gap-4">
