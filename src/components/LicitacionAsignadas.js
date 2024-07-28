@@ -15,7 +15,7 @@ function Licitacion({ children, licitacion }) {
     const horafinalizacion = (licitacion?.fechafincontrato?.getHours() < 10 ? '0' : '') + licitacion?.fechafincontrato?.getHours()
     const minutofinalizacion = (licitacion?.fechafincontrato?.getMinutes() < 10 ? '0' : '') + licitacion?.fechafincontrato?.getMinutes()
 
-    const rutacarpeta = "localexplorer:" + licitacion.rutacarpeta
+    const rutacarpeta = licitacion.rutacarpeta
 
     return (
 <div className="grid grid-cols-1 gap-4">
