@@ -81,6 +81,7 @@ function Buscador() {
                                 <option value="estadofinal">Estado final</option>
                                 <option value="duracioncontratoanyo">Duración de contrato</option>
                                 <option value="observaciones">Observaciones</option>
+                                <option value="responsable">Responsable</option>
                             </select>
                             <label className="flex flex-col">
                                 <span className="mb-1 text-xl">Buscar</span>
