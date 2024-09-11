@@ -383,7 +383,7 @@ function Form({ action, title, licitacion, disabled = false, onClick, usuario })
 
                         <label htmlFor='rutacarpeta' className='mb-2 text-3xl mr-20'>Ruta de la carpeta</label>
                         <input type='text' id='rutacarpeta' name='rutacarpeta'
-                            defaultValue={licitacion?.rutacarpeta} className="border p-2 rounded text-center text-xl my-1"/>
+                            defaultValue={`localexplorer:${licitacion?.rutacarpeta || ''}`}  className="border p-2 rounded text-center text-xl my-1"/>
 
                         <label htmlFor='observaciones' className='mb-2 text-3xl mr-20'>Observaciones</label>
                         <textarea id='observaciones' name='observaciones'
