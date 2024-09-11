@@ -381,9 +381,31 @@ function Form({ action, title, licitacion, disabled = false, onClick, usuario })
                             defaultValue={licitacion?.duracioncontratoanyo}
                             className="border p-2 rounded text-center text-xl my-1" />
 
-                        <label htmlFor='rutacarpeta' className='mb-2 text-3xl mr-20'>Ruta de la carpeta</label>
-                        <input type='text' id='rutacarpeta' name='rutacarpeta'
-                            defaultValue={`localexplorer:${licitacion?.rutacarpeta || ''}`}  className="border p-2 rounded text-center text-xl my-1"/>
+<div style={{ position: 'relative', display: 'inline-block' }}>
+    <label htmlFor='rutacarpeta' className='mb-2 text-3xl mr-20'>Ruta de la carpeta</label>
+    
+    <input 
+        type='text' 
+        id='rutacarpeta' 
+        name='rutacarpeta'
+        defaultValue={licitacion?.rutacarpeta || ''}
+        style={{ paddingLeft: '120px' }} // Aseguramos espacio para el prefijo invisible
+        className="border p-2 rounded text-center text-xl my-1"
+    />
+    
+    <span style={{ 
+        position: 'absolute', 
+        left: '10px', 
+        top: '50%', 
+        transform: 'translateY(-50%)', 
+        color: 'transparent',  // Hace el texto invisible
+        pointerEvents: 'none', // Evita que sea seleccionable
+        zIndex: 1
+    }}>
+        localexplorer:
+    </span>
+</div>
+
 
                         <label htmlFor='observaciones' className='mb-2 text-3xl mr-20'>Observaciones</label>
                         <textarea id='observaciones' name='observaciones'
