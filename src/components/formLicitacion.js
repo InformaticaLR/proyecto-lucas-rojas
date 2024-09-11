@@ -381,9 +381,27 @@ function Form({ action, title, licitacion, disabled = false, onClick, usuario })
                             defaultValue={licitacion?.duracioncontratoanyo}
                             className="border p-2 rounded text-center text-xl my-1" />
 
+                            <form onSubmit={(e) => {
+                                    e.preventDefault();
+                                    // Obtenemos el valor del campo sin el prefijo
+                                    const rutaSinPrefijo = e.target.rutacarpeta.value;
+                                    // Concatenamos el prefijo 'localexplorer:'
+                                    const rutaFinal = `localexplorer:${rutaSinPrefijo}`;
+                                    console.log(rutaFinal); // Aquí puedes enviar 'rutaFinal' a la base de datos
+                                    // Envía 'rutaFinal' al backend o guarda en la base de datos
+                        }}>
+
                         <label htmlFor='rutacarpeta' className='mb-2 text-3xl mr-20'>Ruta de la carpeta</label>
-                        <input type='text' id='rutacarpeta' name='rutacarpeta'
-                            defaultValue={`localexplorer:${licitacion?.rutacarpeta || ''}`}  className="border p-2 rounded text-center text-xl my-1"/>
+                        <input 
+        type='text' 
+        id='rutacarpeta' 
+        name='rutacarpeta'
+        defaultValue={licitacion?.rutacarpeta || ''} // Solo se muestra la ruta sin el prefijo
+        className="border p-2 rounded text-left text-xl my-1" 
+    />
+    
+    <button type="submit" className="btn btn-primary">Guardar</button>
+</form>
 
                         <label htmlFor='observaciones' className='mb-2 text-3xl mr-20'>Observaciones</label>
                         <textarea id='observaciones' name='observaciones'
